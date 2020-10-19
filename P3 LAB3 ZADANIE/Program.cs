@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Dynamic;
+using System.Text;
 
 namespace P3_LAB3_ZADANIE
 {
@@ -7,7 +8,29 @@ namespace P3_LAB3_ZADANIE
     {
         static void Main(string[] args)
         {
+            CheckString();
             TableSum();
+
+        }
+        static void CheckString()
+        {
+            Console.WriteLine("Podaj zdanie.");
+            string? zdanie = Console.ReadLine();
+           
+            if (string.IsNullOrEmpty(zdanie))
+            {
+                Console.WriteLine("Pusty String!");
+            }
+            else if(!zdanie.EndsWith("."))
+            {
+                zdanie = zdanie += ".";
+            }
+
+            zdanie = zdanie.Trim();
+            zdanie = char.ToUpper(zdanie[0]) + zdanie.Substring(1);
+         
+            zdanie = string.Join(" ", zdanie.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));    // zaczynamy od split który dzieli string na podciągi oraz usuwa puste podciągi 
+            Console.WriteLine(zdanie);                                                                               // następnie join łączy te podciągi wraz z separatorem " "
         }
 
         static void TableSum()
@@ -21,7 +44,7 @@ namespace P3_LAB3_ZADANIE
             Random rnd = new Random();
 
             for (int i = 0; i < tablica.Length; i++)
-            {    
+            {
                 Console.Write("Podaj drugi wymiar tablicy: ");
                 secondDimension = int.Parse(Console.ReadLine());
                 tablica[i] = new double[secondDimension];       // drugi wymiar podany przez użytkownika
@@ -43,11 +66,11 @@ namespace P3_LAB3_ZADANIE
                 for (int j = 0; j < tablica[i].Length; j++)
                 {
                     suma += tablica[i][j];
-                    Console.WriteLine(suma);
-                    Console.WriteLine($"wartość po indeksem {i}, {j} {tablica[i][j]} ");
+                    //Console.WriteLine(suma);
+                    Console.WriteLine($"Wartość po indeksem [{i}][{j}]  {tablica[i][j]}, suma: {suma}");
                 }
             }
-            Console.WriteLine($"suma: {suma}");
+            Console.WriteLine($"Suma: {suma}");
         }
     }
 }
