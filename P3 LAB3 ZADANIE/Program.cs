@@ -9,26 +9,33 @@ namespace P3_LAB3_ZADANIE
         static void Main(string[] args)
         {
             CheckString();
-            TableSum();
+            //TableSum();
 
         }
         static void CheckString()
         {
+        Start:
             Console.WriteLine("Podaj zdanie.");
             string? zdanie = Console.ReadLine();
-           
-            if (string.IsNullOrEmpty(zdanie))
+
+            if (string.IsNullOrEmpty(zdanie) || string.IsNullOrWhiteSpace(zdanie))
             {
                 Console.WriteLine("Pusty String!");
+                goto Start;                                     
             }
-            else if(!zdanie.EndsWith("."))
+            else if (!char.IsLetter(zdanie, 0))
             {
-                zdanie = zdanie += ".";
+                Console.WriteLine("Rozpocznij od litery");
+                goto Start;
+            }
+            else if (!zdanie.EndsWith("."))
+            {
+                zdanie = zdanie + ".";
             }
 
             zdanie = zdanie.Trim();
             zdanie = char.ToUpper(zdanie[0]) + zdanie.Substring(1);
-         
+
             zdanie = string.Join(" ", zdanie.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));    // zaczynamy od split który dzieli string na podciągi oraz usuwa puste podciągi 
             Console.WriteLine(zdanie);                                                                               // następnie join łączy te podciągi wraz z separatorem " "
         }
