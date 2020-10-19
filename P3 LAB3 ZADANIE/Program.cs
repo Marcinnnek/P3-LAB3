@@ -14,15 +14,19 @@ namespace P3_LAB3_ZADANIE
         {
             Console.Write("Podaj pierwszy wymiar tablicy: ");
             int firstDimension = int.Parse(Console.ReadLine());
-            Console.Write("Podaj drugi wymiar tablicy: ");
-            int secondDimension = int.Parse(Console.ReadLine());
+
+            int secondDimension;// = int.Parse(Console.ReadLine());
 
             double[][] tablica = new double[firstDimension][];
 
             Random rnd = new Random();
             for (int i = 0; i < tablica.Length; i++)
             {
+                //tablica[i] = new double[secondDimension];
+                Console.Write("Podaj drugi wymiar tablicy: ");
+                secondDimension = int.Parse(Console.ReadLine());
                 tablica[i] = new double[secondDimension];
+                //tablica[i] = new double[rnd.Next(10)];        
                 //tablica[i] = new double[2];                   #test
                 for (int j = 0; j < tablica[i].Length; j++)
                 {
@@ -32,7 +36,7 @@ namespace P3_LAB3_ZADANIE
                 }
             }
 
-            double suma=0;
+            double suma = 0;
 
             for (int i = 0; i < tablica.Length; i++)
             {
